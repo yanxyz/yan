@@ -7,7 +7,7 @@ import sys
 import config as cf
 
 yui = sys.path[0] + '\\' + cf.yui
-option = cf.yuioption
+option = cf.yui_option
 
 for arg in sys.argv:
     #you can use os.path.splitext to get the true extention
@@ -24,4 +24,4 @@ for arg in sys.argv:
         cmd = 'java -jar "' + yui + '" "' + arg + '" -o "' + out + '" ' + option
         os.system(cmd)
 
-#os.system('pause')
+os.system('pause')

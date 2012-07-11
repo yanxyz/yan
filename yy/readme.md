@@ -4,6 +4,8 @@
 使用前先编辑config.py，修改配置。
 使用时拖动文件到相应py文件上。
 
+这套工具待开发为GUI。
+
 yuicompressor.py
 --------------
 
@@ -24,12 +26,6 @@ Native2ascii.py
 当js、css文件的编码与页面编码不一致时，非 ascii 字符会导致乱码，
 将代码转为ascii可避免这种情况。
 
-CssGagaAssit.py
-------------
-
-事先安装好[PIL模块][]。
-
-[CssGaga][]是有这个功能的，拖动slice图片生成css代码，不过似乎有生成spirit的过程。这个脚本可将生成的css代码保存保存到css文件中，在需要多个spirit时相对方便那么一点点。
 
 url.py
 -----
@@ -40,7 +36,7 @@ output.py
 --------
 
 保存本地服务器上动态文件的输出，即html文件。
-简单的整理了缩进。要示源文件中html标签对称，如
+简单的整理了缩进。要求源文件中html标签对称，如
 
 	<p>
 	<span>It's a test</span>
@@ -53,6 +49,19 @@ output.py
 
 	<p><span>It's a test</span>
 	</p>
+
+CssGagaSlice.py
+------------
+
+事先安装好[PIL模块][]。
+
+仿[CssGaga][]的SliceToCode功能，将生成的css代码保存保存到css文件中，满足保存到css文件的需求，同时没有图片压缩过程相对快一点。
+
+CssGagaSprite.py
+------------
+
+[CssGaga][]合成sprite后，有许多重复的background-image，这样冗余下来的代码还是比较可观的。尝试合并，对于场景复杂的情况还待测试。
+
 
 [PIL模块]:http://www.pythonware.com/products/pil/
 [CssGaga]:http://www.99css.com/archives/542	
