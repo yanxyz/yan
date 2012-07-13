@@ -11,7 +11,7 @@ n2a_option = '-encoding utf-8'
 #n2a_option = '-encoding GB18030'
 
 #CssGagaSprite.py
-exts = ['.png','.jpg','.gif','-ie6.png']
+exts = ['.png','.jpg','.gif','-ie6.png','-32.png']
 #breakline = False
 breakline = True
 
