@@ -41,10 +41,14 @@ snippet charset
 	<meta charset="utf-8" />
 snippet meta
 	<meta name="${1:keywords/description/generator/author/copyright}" content="${2}" />
+snippet yanxyz
+	<meta name="author" content="http://yanxyz.net" />
 snippet robots
 	<meta name="robots" content="${1:index/follow/noindex/nofollow}" />
+#snippet title
+#	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
 snippet title
-	<title>${1:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>${2}
+	<title>${1:`Filename('', 'Page Title')`}</title>${2}
 snippet base
 	<base href="${1}" target="${2}" />
 snippet script4
@@ -60,7 +64,7 @@ snippet js4
 snippet js
 	<script src="${1}"/></script>${2}
 snippet jquery
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"/></script>${2}
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"/></script>${2}
 snippet style4
 	<style type="text/css">
 		${1}
@@ -69,6 +73,14 @@ snippet style
 	<style>
 		${1:*{margin:0;padding:0}}${2}
 	</style>${3}
+snippet link4
+	<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" charset="utf-8" />${4}
+snippet link
+	<link rel="stylesheet" href="${1}" />
+snippet mailto
+	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
+#snippet meta
+#<meta name="${1:name}" content="${2:content}" />${3}
 # Embed QT Movie
 snippet movie
 	<object width="$2" height="$3" classid="clsid:02BF25D5-8C17-4B23-BC80-D3488ABDDC6B"
@@ -88,63 +100,70 @@ snippet fieldset
 		<legend>${1:name}</legend>
 		${3}
 	</fieldset>
+#heading
+#snippet h1
+#	<h1 id="${1:heading}">${2:$1}</h1>
+#form elements
 snippet form
 	<form action="${1:`Filename('$1_submit')`}" method="${2:get}" accept-charset="utf-8">
 		${3}
 	</form>
-#heading
-#snippet h1
-#	<h1 id="${1:heading}">${2:$1}</h1>
-snippet input
-	<input type="${1:text}" name="${2:some_name}" value="${3}" />${4}
 snippet label
-	<label for="${2:$1}">${1:name}</label><input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}" />${7}
-snippet labelinput1
-	<label for="${2:$1}">${1:name}</label><input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}" />${7}
-snippet labelinput2
-	<label for="${2:$1}">${1:name}</label><input type="${3:text/submit/hidden/button}" name="${4:$2}" value="${5}" id="${6:$2}" />${7}
-snippet link HTML4
-	<link rel="${1:stylesheet}" href="${2:/css/master.css}" type="text/css" media="${3:screen}" charset="utf-8" />${4}
-snippet link HTML5
-	<link rel="${1:stylesheet}" href="${2:/css/master.css}" media="${3:screen}" />${4}
-snippet mailto
-	<a href="mailto:${1:joe@example.com}?subject=${2:feedback}">${3:email me}</a>
-#snippet meta
-#<meta name="${1:name}" content="${2:content}" />${3}
-snippet opt
-	<option value="${1:option}">${2:$1}</option>${3}
-snippet optt
-	<option>${1:option}</option>${2}
+	<label for="${2:$1}">${1:name}</label>${3}
+snippet labelwrap
+	<label>${1}</label>
+snippet input
+	<input type="${1}" name="" id="" value="${2}" />${3}
+#delete the empty name and id: d4w
+snippet nameid
+	name="${1:some_name}" id="${2:$1}"
+snippet ta
+	<textarea name="" id="">${1}</textarea>
+snippet rowcol
+	rows="${1}" cols="${2}"
 snippet select
-	<select name="${1:some_name}" id="${2:$1}">
-		<option value="${3:option}">${4:$3}</option>
-	</select>${5}
-snippet table
-	<table border="${1:0}">
-		<tr><th>${2:Header}</th></tr>
-		<tr><th>${3:Data}</th></tr>
-	</table>${4}
-snippet textarea
-	<textarea name="${1:Name}" rows="${2:8}" cols="${3:40}">${4}</textarea>${5}
+	<select name="" id="">
+		<option value="${1:option}">${1:$2}</option>
+	</select>
+snippet option
+	<option value="${1:option}">${2:$1}</option>${3}
+snippet br
+	<br />${1}
+snippet s
+	<s></s>${1}
+snippet sc
+	<s class="${1}"></s>${2}
+snippet a
+	<a href="${1:#}">${2}</a>${3}
+snippet ab
+	<a href="${1:#}" target="_blank">${2}</a>${3}
+snippet aimg
+	<a href="${1:#}"><img src="" alt="" /></a>${3}
+snippet small
+	<small>${1}</small>
+snippet hc
+	<!--${1}-->
+##templete
 snippet html
 	<!DOCTYPE html>
 	<html>
 		<head>
 			<meta charset="${1:utf-8}" />
-			<title>${2:`substitute(Filename('', 'Page Title'), '^.', '\u&', '')`}</title>
+			<title>${1:`Filename('', 'Page Title')`}</title>${2}
 		</head>
 		<body>
 			${3}
 		</body>
 	</html>
-snippet br
-	<br />${1}
-snippet a
-	<a href="${1:#}">${2}</a>${3}
-snippet ab
-	<a href="${1:#}" target="_blank">${2}</a>${3}
-snippet small
-	<small>${1}</small>
+snippet lia
+	<ul>
+		<li><a href="#">${1}</a></li>
+	</ul>
+snippet table
+	<table>
+		<tr><th>${2:Header}</th></tr>
+		<tr><th>${3:Data}</th></tr>
+	</table>${4}
 # Some useful Unicode entities
 # Non-Breaking Space
 snippet nbs
@@ -183,8 +202,8 @@ snippet enter
 snippet command
 	&#x2318;
 # ⌥
-snippet option
-	&#x2325;
+#snippet option
+#	&#x2325;
 # ⌦
 snippet delete
 	&#x2326;
